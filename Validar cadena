@@ -1,0 +1,94 @@
+/*
+Escribir una funcion para validar una nueva clave de acceso.
+La función debera recibir una cadena de caracteres, que contendra la clave
+candidata, ingresada por el usuario; y devolvera true o false, dependiendo de
+si cumple con las condiciones establecidas.
+La clave debe:
+- Tener como minimo entre 4 y 8 digitos alfanuméricos
+- Solo podra tener caracteres numericos y letras minusculas (excluida la ñ)
+- Al menos debe haber una letra y un número en la clave
+Ejemplos:
+validar("29039") devuelve false
+validar("a32i4") devuelve true
+validar("examen") devuelve false
+validar("colon850") devuelve true
+validar("29a") devuelve false
+validar("az234m098") devuelve false
+validar("az234m09") devuelve true
+validar("año2020") devuelve false
+*/
+
+#include <stdio.h>;
+#include <stdbool.h>;
+#include <string.h>;
+
+
+
+bool Longitud(char cadena)
+{
+	bool devolver = true; int a = 0;
+	while(cadena[a] != '\0' || a < 8)
+	{
+		a = a+1;
+	}
+	if( a < 3 || a > 7)
+	{
+		devolver = false;
+	}
+	return devolver;
+}
+
+bool Caracteres(char cadena)
+{
+	bool devolver = true; int a = 0, b = 0;
+	while(cadena[a] != '\0' && x != 1)
+	{
+		if(!((cadena[a] > 'a' && cadena[a] < 'z') || (cadena[a] >= '0' && cadena[a] <= 9)))
+		{
+			x = 1;
+		}
+		a = a+1;
+	}
+	return devolver;
+}
+
+bool UnaLetraUnNumero(char cadena)
+{
+	bool devolver = true; int a = 0, b = 0, c = 0;
+	while((cadena[a] != '\0') || (b == 0 && c == 0))
+	{
+		if(cadena[a] >= 'a' && cadena[a] <= 'z')
+		{
+			b = 1;
+		}
+		if(cadena[a] >= '0' && cadena[a] <= '9')
+		{
+			c = 1;
+		}
+		a = a+1; 
+	}
+	if(c != 1 && b != 1)
+	{
+		devolver = false;
+	}
+	return devolver;
+}
+
+
+bool main()
+{
+	char cadena[] = "29039"; bool devolver = true;
+	
+	devolver = Caracteres(cadena);
+	
+	if(devolver == true)
+	{
+		devolver = Longitud(cadena);
+	}
+	
+	if(devolver == true)
+	{
+		devolver = UnaLetraUnNumero(cadena);
+	}
+	return devolver;
+}
